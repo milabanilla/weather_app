@@ -1,81 +1,107 @@
-.container {
-  max-width: 50em;
+
+h1{
+  color:#878787;
+  font-size:24px;
+  font-weight: 100;
+  line-height: 28px;
 }
-.container,
-.card,
-.date {
-  margin: 0 auto;
-  display: block;
+ul{
+  margin: 0;
+  padding:0;
+
 }
-.card {
-  margin-top: 20px;
+li{
+  list-style-type:none;
+  margin:0;
+  color:rgb(135,135,135);
+  font-size: 16px;
+  line-height: 28px;
+  text-transform: capitalize;
 }
-.card-title {
-  display: block;
-  padding-bottom: 100px;
+li.first-letter{
+  text-transform: capitalize;
 }
-.col-3 {
-  width: 200px;
-  font-style: italic;
-}
-#temp {
-  font-size: 20px;
-}
-#celcius_link,
-#fahrenheit_link {
-  font-size: 22px;
-  padding-bottom: 80px;
+a{
   text-decoration: none;
 }
-.list_info {
-  list-style: none;
+
+.weather-app-wrapper{
+  max-width: 600px;
+  margin: 30px auto;
+
 }
-h4 {
-  font-size: 18px;
-  width: 90%;
-  text-align: left;
+.weather-app{
+
+  padding: 20px;
+  border: 1px solid rgb(158, 148, 124);
+  border-radius: 5px;
+
+}
+.overview{
+  margin-bottom: 20px;
+}
+.weather-temperature img{
+  margin-right: 6px;
+  height: 64px;
+  width: 64px;
+}
+.weather-temperature strong{
+  color: rgb(33,33,33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
 }
 
-h5 {
+.weather-temperature .units {
+  position: relative;
   font-size: 16px;
-  width: 90%;
-  font-weight: 200;
-  padding-left: 3em;
-  font-style: italic;
+  top: -34px;
 }
+.weather-temperature .active{
+  color: rgb(33,33,33);
+  cursor: default;
 
-.date {
+}.weather-temperature .active .hover{
+  text-decoration: none;
+  
+}
+.form-control{
   text-align: center;
 }
-.city {
-  font-size: 25px;
-  font-style: italic;
-
-  width: 80%;
+.col-6{
+  margin-bottom: 10px;
 }
-
 #currentBtn {
-  display: inline-block;
-  width: 90px;
-
-  background-color: green;
+  margin-top: 5px;
+  border: 2px solid rgb(98, 161, 98);
+  background-color: rgb(98, 161, 98);
 }
-.form-control {
-  display: inline-block;
-  text-align: center;
-  width: 65%;
+#currentBtn:hover {
+  margin-top: 5px;
+  border: 2px solid rgb(83, 131, 83);
+  background-color: rgb(83, 131, 83);
+}
+#week-
+#week-weather{
+  margin: 0 auto;
   margin-top: 20px;
-  margin-left: 10%;
-}
-#latitude-longtitude {
+  padding: 10px;
   text-align: center;
-  color: rgb(87, 137, 197);
-}
-.weatherImg {
-  width: 200px;
-}
 
-footer {
-  padding-top: 20px;
+}
+#column-date{
+  color:rgb(135,135,135);
+  padding-top:8px;
   text-align: center;
+  margin:0 auto;
+  font-size: 14px;
+  transition:all 550ms ease;
+}
+#column-date:hover{
+  color:rgb(73, 73, 73);
+  transition: all 450ms ease-in-out;
+  background-color: rgba(11, 94, 215,0.12);
+  border-radius: 5px;
+  padding-bottom:3px;
+  
 }

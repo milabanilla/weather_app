@@ -1,122 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="src/styles.css"> 
-    <title>Weather App</title>
-</head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
-  <div class="container">
-  <main>
-    <div class="card">
-        <form id="search-form">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label" id="search-city"></label>
-              <input type="text" class="form-control" id="city-input"placeholder= "Search City">
-              <button type="submit" type="button" class="btn btn-primary" id="searchBtn">Search</button>
-              <button  value="Current" class="btn btn-primary" id="currentBtn">Current </button>
-            </div>
-        </form>
-        <div class="card-body">
-          <h4 id = 'latitude-longtitude'></h4>
-          <div class="row align-items-center main">
-            
-            <div class="col-3">
-              <img src="src/rain.svg" alt = "A animated rain cloud" class = "weatherImg">
-            </div>
+    <div class="container">
+      <div class = "weather-app-wrapper">
+      <div class = "weather-app">
+        <form id="search-form" class="mb-3">
+          <div class="row">
+            <div class="col-9">
+          <input type="search" 
+                 placeholder="Type a a city..." 
+                 class = "form-control"
+                 id="city-input"
+                 autocomplete="off"
+                />
+              </div>
+                <div class="col-3">
+                  <input type = "submit" value="Search" class ='btn btn-primary w-100'>
+                  <button value="current" class="btn btn-primary w-100" id="currentBtn">Current</button>
 
-            <div class="col-4">
-              <div class="row align-items-center">
-                <span class = 'current_temp'>
-                 <span id="temp"></span> <a href ="#" id="celcius_link">°C</a> | <a href= "#" id="fahrenheit_link">°F</a>
-               </span> 
+                </div>
               </div>
-                <h3 class = 'city'>Current City</h3>
-                <h4 id = "current_date"></h4>
-              </div>
-              <div class="col-1"></div>
-              <div class="col-3">
-                <ul class ="list_info">
-                  <li>Percipication: 0%</li>
-                  <li>Humidity: 77%</li>
-                  <li>Wind: 8 km/h</li>
-                </ul>
-              </div>
-              </div>
-              <div class="row align-items-center">
-                <div class="col">
-                  <span class="date">
-                    Monday
-                  <div class="row align-items-center">
-                    <img src="src/Sun.svg" alt="A animated sun">
-                    <span>
-                    <span >5</span>°C / <span id="fahrenheit">41</span>°F
-                  </span> 
-                    </span>
-                  </div>
-                </div>              
-                <div class="col">
-                  <span class="date">
-                    Tuesday
-                  <div class="row align-items-center">
-                    <img src="src/Sun.svg" alt="A animated sun">                 
-                    <span>
-                      <span>5</span> <span>°C / <span id="fahrenheit">41</span>°F
-                    </span> 
-                  </span>
-                  </div>
-                </div>              
-                <div class="col">
-                  <span class="date">
-                    Wednesday
-                  <div class="row">
-                    <img src="src/Sun.svg" alt="A animated sun">                 
-                    <span>
-                      <span>5</span>°C / <span id="fahrenheit">41</span>°F
-                    </span> 
-                  </span>
-                  </div>
-                </div>                
-                <div class="col">
-                  <span class="date">
-                    Thursday
-                  <div class="row">
-                    <img src="src/Sun.svg" alt="A animated sun">                  
-                    <span>
-                      <span>5</span>°C / <span id="fahrenheit">41</span>°F
-                    </span> 
-                  </span>
-                  </div>
-                </div>              
-                <div class="col">
-                  <span class="date">
-                    Friday
-                  <div class="row">
-                    <img src="src/Sun.svg" alt="A animated sun">
-                    <span>
-                      <span>5</span>°C / <span id="fahrenheit">41</span>°F
-                    </span> 
-                  </span>
-                  </div>
-            </div>
+        </form>
+        <div class = "overview">
+    <h1 id="city"></h1>
+    <ul>
+      <li>Last updated at <span id="date"></span></li>
+      <li id = "description">
+        Clear
+      </li>
+    </ul>
+  </div>
+    <div class="row">
+      <div class = "col-6">
+        <div class="d-flex weather-temperature">
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+               alt="Clear" 
+               id="icon" />
+          <div>
+            <strong id="temperature"></strong>
+            <span class="units"> 
+              <a href="#" id="celcius-link" class="active">°C </a>|
+              <a href="#" id="fahrenheit-link">°F</a></span>
+          </div>
         </div>
       </div>
-  </main>
-  <footer>
-    <p><a href = "https://github.com/milabanilla/weather_app" target="_blank">Open Source code</a> byYamila Meza</p>
-  </footer>
-  <script src="src/index.js"></script>
-</div>
-</body>
+    <div class="col-6">
+      <ul>
+        <li>
+          Humidity: <span id= "humidity"></span>%
+        </li>        
+        <li>
+          Wind: <span id="wind"></span> km/h
+        </li>
+      </ul>
+    </div>
 
+    <div class="row align-items-center" id="week-weather">
+      <hr>
+      <div class="col-2"  id="column-date">
+        <span class="date">
+          Monday
+        <div class="row align-items-center">
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+          alt="Clear" 
+          id="icon" />
+          <div>
+            <strong id="temperature"></strong>
+            <span class="units"> 
+              <span id="celcius-link" class="active">°C </span>|
+              <span id="fahrenheit-link">°F</a></span>
+          </div>
+        </div>
+        </span> 
+          </span>
+        </div>
+        <div class="col-2"  id="column-date">
+        <span class="date">
+          Tuesday
+        <div class="row align-items-center">
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+               alt="Clear" 
+               id="icon" />
+               <div>
+                <strong id="temperature"></strong>
+                <span class="units"> 
+                  <span id="celcius-link" class="active">°C </span>|
+                  <span id="fahrenheit-link">°F</a></span>
+              </div>
+        </div>
+      </div>              
+      <div class="col-2" id="column-date">
+        <span class="date">
+        Wednesday
+        <div class="row">
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+               alt="Clear" 
+               id="icon" />        
+               <div>
+                <strong id="temperature"></strong>
+                <span class="units"> 
+                  <span id="celcius-link" class="active">°C </span>|
+                  <span id="fahrenheit-link">°F</a></span>
+              </div>
+        </div>
+      </div>                
+      <div class="col-2"  id="column-date">
+        <span class="date">
+          Thursday
+        <div class="row">
+          <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+          alt="Clear" 
+          id="icon" />            
+          <div>
+            <strong id="temperature"></strong>
+            <span class="units"> 
+              <span id="celcius-link" class="active">°C </span>|
+              <span id="fahrenheit-link">°F</a></span>
+          </div>
+        </div>
+      </div>              
+        <div class="col-2"  id="column-date">
+          <span class="date">
+            Friday
+            <div class="row">
+              <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"  
+              alt="Clear" 
+              id="icon" />
+              <div>
+                <strong id="temperature"></strong>
+                <span class="units"> 
+                  <span id="celcius-link" class="active">°C </a>|
+                  <span id="fahrenheit-link">°F</a></span>
+              </div>
+            </div>
+       </div>
+    </div>
+
+    </div>
+    </div>
+    <small>
+      <a href="https://github.com/milabanilla/weather_app_test" 
+         target="_blank">
+         Open source code
+        </a> by Yamila Meza
+    </small>
+    <script src="/src/app.js"></script>
+</body>
 </html>
-<!---
-  Credit https://www.amcharts.com/
-    images: Rain.svg & sun.svg
--->
